@@ -7,7 +7,7 @@ export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = io("http://https://slack-application.onrender.com"); 
+    const newSocket = io("https://slack-application.onrender.com"); 
     setSocket(newSocket);
 
     return () => newSocket.disconnect();
