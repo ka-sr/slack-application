@@ -11,49 +11,18 @@ import MessageInput from "./MessageInput";
 const ChatWindow = () => {
 
   const {
-
     activeWorkspace,
-
     activeChat,
-
     messages,
-
     typingUser,
-
     setMessages,
-
   } = useChat();
 
   const socket = useSocket();
 
   const { user, logout } = useAuth();
 
-  const username =
-    user?.name || "User";
-
-  // NO WORKSPACE SELECTED
-  if (!activeWorkspace) {
-
-    return (
-
-      <div className="h-full flex items-center justify-center bg-slate-950">
-
-        <div className="text-center">
-
-          <h1 className="text-3xl font-bold text-white mb-4">
-            Welcome to Slack Chat
-          </h1>
-
-          <p className="text-gray-400">
-            Create or join a workspace to start chatting
-          </p>
-
-        </div>
-
-      </div>
-
-    );
-  }
+  const username = user?.name || "User";
 
   // JOIN ROOM / DM
   useEffect(() => {
@@ -70,19 +39,14 @@ const ChatWindow = () => {
     );
 
     socket.emit("join-room", {
-
       room: activeChat.id,
-
       user: username,
-
     });
 
     return () => {
 
       socket.emit("leave-room", {
-
         room: activeChat.id,
-
       });
 
     };
@@ -108,9 +72,7 @@ const ChatWindow = () => {
         );
 
         const res = await axios.get(
-
           `http://localhost:5000/messages/${activeChat.id}`
-
         );
 
         if (res.data) {
@@ -164,6 +126,30 @@ const ChatWindow = () => {
     username,
   ]);
 
+  // NO WORKSPACE SELECTED
+  if (!activeWorkspace) {
+
+    return (
+
+      <div className="h-full flex items-center justify-center bg-slate-950">
+
+        <div className="text-center">
+
+          <h1 className="text-3xl font-bold text-white mb-4">
+            Welcome to Slack Chat
+          </h1>
+
+          <p className="text-gray-400">
+            Create or join a workspace to start chatting
+          </p>
+
+        </div>
+
+      </div>
+
+    );
+  }
+
   return (
     <div className="h-full flex flex-col bg-slate-950">
 
@@ -175,9 +161,7 @@ const ChatWindow = () => {
 
           {/* WORKSPACE */}
           <span className="text-xs text-blue-400 font-medium">
-
             {activeWorkspace.name}
-
           </span>
 
           {/* CHAT TITLE */}
@@ -211,8 +195,7 @@ const ChatWindow = () => {
       {/* MESSAGES */}
       <div className="flex-1 overflow-y-auto p-6 space-y-4">
 
-        {messages[activeChat.id]?.length >
-        0 ? (
+        {messages[activeChat.id]?.length > 0 ? (
 
           messages[activeChat.id]?.map(
             (msg) => (
