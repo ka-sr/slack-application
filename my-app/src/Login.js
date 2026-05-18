@@ -20,14 +20,14 @@ const Login = () => {
   const handleSubmit = async () => {
     try {
       if (isRegister) {
-       await axios.post("http://localhost:5000/register", form);
+       await axios.post("http://https://slack-application.onrender.com/register", form);
         alert("Registered successfully, now login");
         setIsRegister(false);
         return;
       }
 
     
-      const res = await axios.post("http://localhost:5000/login", form);
+      const res = await axios.post("http://https://slack-application.onrender.com/login", form);
 
       if (res.data?.token) {
         

@@ -72,7 +72,7 @@ const ChatWindow = () => {
         );
 
         const res = await axios.get(
-          `http://localhost:5000/messages/${activeChat.id}`
+          `http://https://slack-application.onrender.com/messages/${activeChat.id}`
         );
 
         if (res.data) {

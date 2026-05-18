@@ -50,7 +50,7 @@ const RoomList = () => {
           const workspaceRes =
             await axios.get(
 
-              `http://localhost:5000/workspace/${activeWorkspace._id}`
+              `http://https://slack-application.onrender.com/workspace/${activeWorkspace._id}`
 
             );
 
@@ -58,7 +58,7 @@ const RoomList = () => {
           const usersRes =
             await axios.get(
 
-              "http://localhost:5000/users"
+              "http://https://slack-application.onrender.com/users"
 
             );
 
@@ -118,7 +118,7 @@ const RoomList = () => {
 
           const res =
             await axios.get(
-              "http://localhost:5000/workspaces"
+              "http://https://slack-application.onrender.com/workspaces"
             );
 
           const filtered =
@@ -158,7 +158,7 @@ const RoomList = () => {
           const res =
             await axios.get(
 
-              `http://localhost:5000/invitations/${user.email}`
+              `http://https://slack-application.onrender.com/invitations/${user.email}`
 
             );
 
@@ -196,7 +196,7 @@ const RoomList = () => {
         const res =
           await axios.post(
 
-            "http://localhost:5000/workspaces",
+            "http://https://slack-application.onrender.com/workspaces",
 
             {
               name: workspaceName,
@@ -250,7 +250,7 @@ const RoomList = () => {
 
         await axios.post(
 
-          "http://localhost:5000/invite",
+          "http://https://slack-application.onrender.com/invite",
 
           {
 
@@ -289,7 +289,7 @@ const RoomList = () => {
         const res =
           await axios.post(
 
-            "http://localhost:5000/accept-invite",
+            "http://https://slack-application.onrender.com/accept-invite",
 
             {
               invitationId:
@@ -336,7 +336,7 @@ const RoomList = () => {
         const res =
           await axios.post(
 
-            "http://localhost:5000/create-channel",
+            "http://https://slack-application.onrender.com/create-channel",
 
             {
 
