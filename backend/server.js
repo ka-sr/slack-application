@@ -17,7 +17,9 @@ app.use(express.json());
 
 /* MONGODB CONNECTION */
 mongoose
-  .connect("mongodb://127.0.0.1:27017/chat-app")
+  .connect(
+    "mongodb+srv://kamal:Kamal12345@cluster0.anr22tk.mongodb.net/chat-app?retryWrites=true&w=majority&appName=Cluster0"
+  )
   .then(() => console.log("🟢 MongoDB Connected"))
   .catch((err) => console.log("Mongo Error:", err));
 
@@ -662,7 +664,7 @@ app.post(
 /* SOCKET IO */
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "*",
     methods: ["GET", "POST"],
   },
 });
@@ -677,7 +679,6 @@ io.on("connection", (socket) => {
     socket.id
   );
 
-  /* JOIN ROOM */
   socket.on(
     "join-room",
     ({ room, user }) => {
@@ -702,7 +703,6 @@ io.on("connection", (socket) => {
     }
   );
 
-  /* LEAVE ROOM */
   socket.on(
     "leave-room",
     ({ room }) => {
@@ -724,7 +724,6 @@ io.on("connection", (socket) => {
     }
   );
 
-  /* SEND MESSAGE */
   socket.on(
 
     "send-message",
@@ -774,7 +773,6 @@ io.on("connection", (socket) => {
     }
   );
 
-  /* TYPING */
   socket.on(
     "typing",
     ({ room, user }) => {
@@ -787,7 +785,6 @@ io.on("connection", (socket) => {
     }
   );
 
-  /* STOP TYPING */
   socket.on(
     "stop-typing",
     ({ room }) => {
@@ -799,7 +796,6 @@ io.on("connection", (socket) => {
     }
   );
 
-  /* DISCONNECT */
   socket.on("disconnect", () => {
 
     const userData =
@@ -858,10 +854,12 @@ app.get(
   }
 );
 
-server.listen(5000, () => {
+const PORT = process.env.PORT || 5000;
+
+server.listen(PORT, () => {
 
   console.log(
-    "🚀 Server running on port 5000"
+    `🚀 Server running on port ${PORT}`
   );
 
 });
