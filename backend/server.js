@@ -6,8 +6,8 @@ const mongoose = require("mongoose");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 
-const Workspace = require("./Workspace");
-const Invitation = require("./Invitation");
+const Workspace = require("./workspace");
+const Invitation = require("./invitation");
 
 const app = express();
 const server = http.createServer(app);
